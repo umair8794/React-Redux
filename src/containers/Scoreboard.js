@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import PlayerList from './PlayerList';
-import AddPlayerForm from './AddPlayerForm';
+import Header from '../components/Header';
+import PlayerList from '../components/PlayerList';
+import AddPlayerForm from '../components/AddPlayerForm';
 
 const App = () => {
     return (
