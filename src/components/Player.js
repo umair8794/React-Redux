@@ -6,10 +6,9 @@ import HighScoreIcon from './HighScoreIcon';
 
 class Player extends PureComponent {
     static propTypes = {
-        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         score: PropTypes.number.isRequired,
-        index: PropTypes.string.isRequired,
+        index: PropTypes.number.isRequired,
         isHighScore: PropTypes.bool.isRequired,
         removePlayer: PropTypes.func.isRequired,
         changeScore: PropTypes.func.isRequired
@@ -17,7 +16,6 @@ class Player extends PureComponent {
 
     render() {
         const {
-            id,
             name,
             score,
             index,
@@ -29,7 +27,7 @@ class Player extends PureComponent {
         return (
             <div className="player">
                 <div className="player-name">
-                    <a className="remove-player" onClick={() => removePlayer(id)}>✖</a>
+                    <a className="remove-player" onClick={() => removePlayer(index)}>✖</a>
                     <HighScoreIcon isHighScore={isHighScore} />
                     { name }
                 </div>

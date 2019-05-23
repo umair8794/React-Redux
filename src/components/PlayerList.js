@@ -7,8 +7,7 @@ const PlayerList = ({ players, highScore, removePlayer, changeScore }) => {
         <div className="players">
             {players.map((player, index) =>
                 <Player
-                    key={player.id.toString()}
-                    id={player.id}
+                    key={index}
                     name={player.name}
                     score={player.score}
                     index={index}
@@ -23,7 +22,7 @@ const PlayerList = ({ players, highScore, removePlayer, changeScore }) => {
 
 PlayerList.propTypes = {
     players: PropTypes.array.isRequired,
-    highScore: PropTypes.number.isRequired,
+    highScore: PropTypes.number,
     removePlayer: PropTypes.func.isRequired,
     changeScore: PropTypes.func.isRequired
 };

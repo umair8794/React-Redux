@@ -3,27 +3,23 @@ import * as PlayerActionTypes from '../actiontypes/player';
 const initialState = [
     {
         name: "Guil",
-        score: 0,
-        id: 1
+        score: 0
     },
     {
         name: "Treasure",
-        score: 0,
-        id: 2
+        score: 0
     },
     {
         name: "Ashley",
-        score: 0,
-        id: 3
+        score: 0
     },
     {
         name: "James",
-        score: 0,
-        id: 4
+        score: 0
     }
 ];
 
-export default function Player(action, state = initialState) {
+export default function Player(state = initialState, action) {
     switch (action.type) {
         case PlayerActionTypes.ADD_PLAYER:
             return [
