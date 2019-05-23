@@ -1,37 +1,35 @@
 import React from 'react';
-import { Consumer } from './Context';
+import PropTypes from 'prop-types';
 
-const AddPlayerForm = () => {
+const AddPlayerForm = ({ addPlayer }) => {
     const playerInput = React.createRef();
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addPlayer(playerInput.current.value);
+        e.currentTarget.reset();
+    }
+
     return (
-        <Consumer>
-            {({ actions }) => {
-                const handleSubmit = (e) => {
-                    e.preventDefault();
-                    actions.addPlayer(playerInput.current.value);
-                    e.currentTarget.reset();
-                }
+        <div className="add-player-form">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    ref={playerInput}
+                    placeholder="Enter a player's name"
+                />
 
-                return (
-                    <div className="add-player-form">
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                ref={playerInput}
-                                placeholder="Enter a player's name"
-                            />
-
-                            <input
-                                type="submit"
-                                value="Add Player"
-                            />
-                        </form>
-                    </div>
-                );
-            }}
-        </Consumer>
+                <input
+                    type="submit"
+                    value="Add Player"
+                />
+            </form>
+        </div>
     );
-}
+};
+
+AddPlayerForm.propTypes = {
+    addPlayer: PropTypes.func.isRequired
+};
 
 export default AddPlayerForm;
