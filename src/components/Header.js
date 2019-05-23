@@ -5,11 +5,11 @@ import Stopwatch from './Stopwatch';
 
 const Header = ({ title }) => {
     return (
-        <header>
+        <div className="header">
             <Stats />
             <h1>{ title }</h1>
             <Stopwatch />
-        </header>
+        </div>
     );
 };
 

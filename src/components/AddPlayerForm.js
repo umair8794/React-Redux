@@ -14,18 +14,20 @@ const AddPlayerForm = () => {
                 }
 
                 return (
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            ref={playerInput}
-                            placeholder="Enter a player's name"
-                        />
+                    <div className="add-player-form">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                ref={playerInput}
+                                placeholder="Enter a player's name"
+                            />
 
-                        <input
-                            type="submit"
-                            value="Add Player"
-                        />
-                    </form>
+                            <input
+                                type="submit"
+                                value="Add Player"
+                            />
+                        </form>
+                    </div>
                 );
             }}
         </Consumer>

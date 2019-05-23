@@ -22,12 +22,14 @@ class Player extends PureComponent {
                 {({ actions, players }) => {
                     return (
                         <div className="player">
-                            <span className="player-name">
-                                <button className="remove-player" onClick={() => actions.removePlayer(players[index].id)}>✖</button>
+                            <div className="player-name">
+                                <a className="remove-player" onClick={() => actions.removePlayer(players[index].id)}>✖</a>
                                 <HighScoreIcon isHighScore={isHighScore} />
                                 { players[index].name }
-                            </span>
-                            <Counter index={index} />
+                            </div>
+                            <div className="player-score">
+                                <Counter index={index} />
+                            </div>
                         </div>
                     );
                 }}

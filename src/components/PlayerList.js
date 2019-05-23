@@ -7,7 +7,7 @@ const PlayerList = () => {
         <Consumer>
             {({ players, highScore }) => {
                 return (
-                    <React.Fragment>
+                    <div className="players">
                         {players.map((player, index) =>
                             <Player
                                 key={player.id.toString()}
@@ -15,7 +15,7 @@ const PlayerList = () => {
                                 isHighScore={player.score === highScore}
                             />
                         )}
-                    </React.Fragment>
+                    </div>
                 );
             }}
         </Consumer>
