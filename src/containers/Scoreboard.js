@@ -6,11 +6,13 @@ import * as PlayerActionCreators from '../actions/player';
 import Header from '../components/Header';
 import PlayerList from '../components/PlayerList';
 import AddPlayerForm from '../components/AddPlayerForm';
+import PlayerDetail from '../components/PlayerDetail';
 
 class Scoreboard extends Component {
 
     static propTypes = {
-        players: PropTypes.array.isRequired
+        players: PropTypes.array.isRequired,
+        selectedPlayerIndex: PropTypes.number.isRequired
     }
 
     getHighScore = (players) => {
@@ -22,12 +24,18 @@ class Scoreboard extends Component {
     }
 
     render() {
-        const { dispatch, players } = this.props;
+        const { dispatch, players, selectedPlayerIndex } = this.props;
         const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer, dispatch);
         const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer, dispatch);
         const updatePlayerScore = bindActionCreators(PlayerActionCreators.updatePlayerScore, dispatch);
+        const selectPlayer = bindActionCreators(PlayerActionCreators.selectPlayer, dispatch);
 
         const highScore = this.getHighScore(players);
+
+        let selectedPlayer;
+        if (selectedPlayerIndex !== -1) {
+            selectedPlayer = players[selectedPlayerIndex];
+        }
 
         return (
             <div className="scoreboard">
@@ -37,8 +45,12 @@ class Scoreboard extends Component {
                     highScore={highScore}
                     removePlayer={removePlayer}
                     changeScore={updatePlayerScore}
+                    selectPlayer={selectPlayer}
                 />
                 <AddPlayerForm addPlayer={addPlayer} />
+                <div className="player-detail">
+                    <PlayerDetail player={selectedPlayer} />
+                </div>
             </div>
         );
     }
@@ -46,7 +58,8 @@ class Scoreboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        players: state
+        players: state.players,
+        selectedPlayerIndex: state.selectedPlayerIndex
     };
 };
 

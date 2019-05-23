@@ -1,52 +1,86 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
-const initialState = [
-    {
-        name: "Guil",
-        score: 0
-    },
-    {
-        name: "Treasure",
-        score: 0
-    },
-    {
-        name: "Ashley",
-        score: 0
-    },
-    {
-        name: "James",
-        score: 0
-    }
-];
+const initialState = {
+    players: [
+        {
+            name: "Guil",
+            score: 0,
+            created: '11/8/2016',
+            updated: '11/9/2016'
+        },
+        {
+            name: "Treasure",
+            score: 0,
+            created: '11/9/2016',
+            updated: '11/10/2016'
+        },
+        {
+            name: "Ashley",
+            score: 0,
+            created: '11/11/2016',
+            updated: '11/12/2016'
+        }
+    ],
+    selectedPlayerIndex: -1
+};
 
 export default function Player(state = initialState, action) {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
     switch (action.type) {
         case PlayerActionTypes.ADD_PLAYER:
-            return [
-                ...state,
+            const addedPlayerList = [
+                ...state.players,
                 {
                     name: action.name,
-                    score: 0
+                    score: 0,
+                    created: `${month}/${day}/${year}`,
+                    updated: `${month}/${day}/${year}`
                 }
             ];
 
+            return {
+                ...state,
+                players: addedPlayerList
+            };
+
         case PlayerActionTypes.REMOVE_PLAYER:
-            return [
-                ...state.slice(0, action.index),
-                ...state.slice(action.index + 1)
+            const removedPlayerList = [
+                ...state.players.slice(0, action.index),
+                ...state.players.slice(action.index + 1)
             ];
 
+            return {
+                ...state,
+                players: removedPlayerList
+            };
+
         case PlayerActionTypes.UPDATE_PLAYER_SCORE:
-            return state.map((player, index) => {
+            const updatedPlayerList = state.players.map((player, index) => {
                 if (index === action.index) {
                     return {
                         ...player,
-                        score: player.score + action.score
+                        score: player.score + action.score,
+                        updated: `${month}/${day}/${year}`
                     };
                 }
 
                 return player;
             });
+
+            return {
+                ...state,
+                players: updatedPlayerList
+            };
+
+        case PlayerActionTypes.SELECT_PLAYER:
+            return {
+                ...state,
+                selectedPlayerIndex: action.index
+            };
 
         default:
             return state;
