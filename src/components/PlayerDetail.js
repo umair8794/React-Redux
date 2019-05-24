@@ -2,18 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HighScoreIcon from './HighScoreIcon';
 
-const PlayerDetail = ({ player }) => {
+const PlayerDetail = ({ player, highScore }) => {
   if(player){
-	let highScoreIcon;
-
-	if (player.isHighScore) {
-	  highScoreIcon = <HighScoreIcon isHighScore={player.isHighScore} />;
-	}
-
 	return (
 	  <div>
 		<h3>
-			{ highScoreIcon }
+            <HighScoreIcon isHighScore={player.score === highScore} />
 			{ player.name }
 		</h3>
 		<ul>
@@ -39,7 +33,8 @@ const PlayerDetail = ({ player }) => {
 };
 
 PlayerDetail.propTypes = {
-	player: PropTypes.object
+    player: PropTypes.object,
+    highScore: PropTypes.number
 }
 
 export default PlayerDetail;

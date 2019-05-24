@@ -49,7 +49,10 @@ class Scoreboard extends Component {
                 />
                 <AddPlayerForm addPlayer={addPlayer} />
                 <div className="player-detail">
-                    <PlayerDetail player={selectedPlayer} />
+                    <PlayerDetail
+                        player={selectedPlayer}
+                        highScore={highScore}
+                    />
                 </div>
             </div>
         );

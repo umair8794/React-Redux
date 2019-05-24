@@ -26,13 +26,15 @@ class Player extends PureComponent {
             selectPlayer
         } = this.props;
 
+        const handleRemovePlayer = (event) => {
+            event.stopPropagation();
+            removePlayer(index);
+        }
+
         return (
             <div className="player" onClick={() => selectPlayer(index)}>
                 <div className="player-name">
-                    <a className="remove-player" onClick={(event) => {
-                        event.stopPropagation();
-                        removePlayer(index);
-                    }}>✖</a>
+                    <a className="remove-player" onClick={handleRemovePlayer}>✖</a>
                     <HighScoreIcon isHighScore={isHighScore} />
                     { name }
                 </div>
